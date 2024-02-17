@@ -30,3 +30,8 @@ dev = [
     "pre-commit>=3.6.0",
     "pytest>=8.0.0",
 ]
+
+[tool.aerich]
+tortoise_orm = "app.db.TORTOISE_ORM"
+location = "./migrations"
+src_folder = "./."
