@@ -1,12 +1,17 @@
+from datetime import datetime
+
 from fastapi import APIRouter, Request
-from jinja2_fragments.fastapi import Jinja2Blocks
+from fastapi.templating import Jinja2Templates
 
 from app.config import APP_DIR
+from app.expenses.models import Currency
 
-templates = Jinja2Blocks(directory=APP_DIR / "templates")
+templates = Jinja2Templates(directory=APP_DIR / "templates")
+templates.env.globals["currencies"] = Currency
+templates.env.globals["datetime"] = datetime
 router = APIRouter()
 
 
 @router.get("/")
 async def index(request: Request):
-    return templates.TemplateResponse("shared/_base.html", {"request": request})
+    return templates.TemplateResponse(request, "main.html")
