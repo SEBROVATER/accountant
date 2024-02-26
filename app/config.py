@@ -11,11 +11,10 @@ ROOT_DIR = get_base_dir()
 
 
 class Settings(BaseSettings):
-
     APP_DIR: Path = APP_DIR
 
-    STATIC_DIR: Path = APP_DIR / 'static'
-    TEMPLATE_DIR: Path = APP_DIR / 'templates'
+    STATIC_DIR: Path = APP_DIR / "static"
+    TEMPLATE_DIR: Path = APP_DIR / "templates"
 
     FASTAPI_PROPERTIES: dict[str, Any] = {
         "title": "Accounter",
@@ -45,6 +44,3 @@ class Settings(BaseSettings):
                 }
             )
         return fastapi_kwargs
-
-
-
