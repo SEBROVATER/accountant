@@ -1,3 +1,4 @@
+from decimal import Decimal
 from enum import Enum
 
 from tortoise.fields import (
@@ -26,7 +27,7 @@ class TimestampMixin:
 
 
 class AmountMixin:
-    amount = DecimalField(max_digits=20, decimal_places=10, null=False)
+    amount: Decimal = DecimalField(max_digits=20, decimal_places=10, null=False)
     currency: Currency = CharEnumField(Currency, max_length=5, null=False)
 
 
@@ -42,6 +43,9 @@ class Source(TimestampMixin, AmountMixin, Model):
 
 class Expense(TimestampMixin, AmountMixin, Model):
     name = TextField(null=False)
+    count: Decimal = DecimalField(
+        max_digits=20, decimal_places=10, null=False, default=Decimal(1.0)
+    )
     source = ForeignKeyField(
         "models.Source", related_name="expenses", null=True, on_delete=OnDelete.SET_NULL
     )
