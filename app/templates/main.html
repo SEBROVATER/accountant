@@ -1,7 +1,6 @@
 {% extends "/shared/_base.html" %}
 
 {% block content %}
-
-    <h1>Simple Site</h1>
-    <p>This is just a simple sie for you</p>
+    <a href="{{ url_for('get_expenses') }}">Expenses</a>
+    <div id="notification">notification</div>
 {% endblock %}
