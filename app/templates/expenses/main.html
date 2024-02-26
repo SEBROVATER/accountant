@@ -1,36 +1,41 @@
 {% extends "/shared/_base.html" %}
-
 {% block content %}
     <form hx-post="/expenses/" hx-target="#notification" hx-swap="outerHTML">
         <br>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
-        <br/>
+        <br />
         <br>
         <label for="amount">Amount:</label>
         <input type="number" id="amount" name="amount" required>
-        <br/>
+        <br />
         <br>
         <fieldset>
             {% for currency in currencies %}
                 <label for="{{ currency.name }}">{{ currency.name }}:</label>
-                <input type="radio" id="{{ currency.name }}" name="currency" value="{{ currency.name }}" required>
+                <input type="radio"
+                       id="{{ currency.name }}"
+                       name="currency"
+                       value="{{ currency.name }}"
+                       required>
             {% endfor %}
         </fieldset>
-        <br/>
+        <br />
         <br>
         <label for="count">Count:</label>
         <input type="number" id="count" step="0.0000000001" name="count" value="1">
-        <br/>
+        <br />
         <br>
         <label for="date">Date:</label>
-        <input type="datetime-local" min="2020-01-01T00:00" value="{{ datetime.now().isoformat(timespec='minutes') }}" step="60" id="date" name="date">
-        <br/>
+        <input type="datetime-local"
+               min="2020-01-01T00:00"
+               value="{{ datetime.now().isoformat(timespec='minutes') }}"
+               step="60"
+               id="date"
+               name="date">
+        <br />
         <input type="submit">
     </form>
-
     {% include "expenses/table.html" %}
     <div id="notification">notification</div>
-{% endblock %}
-
-
+{% endblock content %}

@@ -8,13 +8,13 @@
         <th>date</th>
     </tr>
     {% for expense in expenses %}
-    <tr>
-        <td>{{ expense.id }}</td>
-        <td>{{ expense.name }}</td>
-        <td>{{ expense.amount|float }}</td>
-        <td>{{ expense.currency.name }}</td>
-        <td>{{ expense.count|float }}</td>
-        <td>{{ expense.date.strftime('%Y-%m-%dT%H:%M') }}</td>
-    </tr>
+        <tr>
+            <td>{{ expense.id }}</td>
+            <td>{{ expense.name }}</td>
+            <td>{{ expense.amount|float }}</td>
+            <td>{{ expense.currency.name }}</td>
+            <td>{{ expense.count|float }}</td>
+            <td>{{ expense.date.strftime("%Y-%m-%dT%H:%M") }}</td>
+        </tr>
     {% endfor %}
 </table>
