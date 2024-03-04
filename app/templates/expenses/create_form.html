@@ -8,16 +8,11 @@
     <input type="number" id="amount" name="amount" required>
     <br />
     <br>
-    <fieldset>
-        {% for currency in currencies %}
-            <label for="{{ currency.name }}">{{ currency.name }}:</label>
-            <input type="radio"
-                   id="{{ currency.name }}"
-                   name="currency"
-                   value="{{ currency.name }}"
-                   required>
-        {% endfor %}
-    </fieldset>
+    <br>
+    <label for="currency">Currency:</label>
+    <select id="currency" name="currency" required>
+        {% for currency in currencies %}<option value="{{ currency.name }}">{{ currency.name }}</option>{% endfor %}
+    </select>
     <br />
     <br>
     <label for="count">Count:</label>
