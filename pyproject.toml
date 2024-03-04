@@ -1,7 +1,7 @@
 [project]
 name = "accountant"
 version = "0.1.0"
-description = "Default template for PDM package"
+description = "Personal finance tool"
 authors = [
     {name = "SEBROVATER", email = "sebrovskiy.k@gmail.com"},
 ]
