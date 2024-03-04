@@ -10,7 +10,7 @@ body {
     border: 5px solid black;
 }
 
-#notification {
+#alert {
     position: fixed;
     bottom: 60px;
     right: 30px;
