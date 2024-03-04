@@ -17,14 +17,8 @@ def get_app() -> FastAPI:
     app.mount("/static", StaticFiles(directory=settings.APP_DIR / "static"), name="static")
     app.include_router(main_router)
     app.include_router(expenses_router)
-
     return app
 
 
 app = get_app()
-
-if __name__ == "__main__":
-    import uvicorn
-
-    register_tortoise(app, config=TORTOISE_ORM)
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+register_tortoise(app, config=TORTOISE_ORM)
