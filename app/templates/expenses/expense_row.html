@@ -1,0 +1,13 @@
+<tr id="expense_{{ expense.id }}">
+    <td>{{ expense.id }}</td>
+    <td>{{ expense.name }}</td>
+    <td>{{ expense.amount|float }}</td>
+    <td>{{ expense.currency.name }}</td>
+    <td>{{ expense.count|float }}</td>
+    <td>{{ expense.date.strftime("%Y-%m-%dT%H:%M") }}</td>
+    <td>
+        <button hx-delete="/expenses/{{ expense.id }}"
+                hx-target="#expense_{{ expense.id }}"
+                hx-swap="delete">Delete</button>
+    </td>
+</tr>

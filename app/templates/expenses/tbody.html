@@ -1,0 +1,8 @@
+<tbody id="expenses-table"
+       hx-get="/expenses/table"
+       hx-trigger="newExpense from:body"
+       hx-swap="outerHTML">
+    {% for expense in expenses %}
+        {% include "expenses/expense_row.html" %}
+    {% endfor %}
+</tbody>
