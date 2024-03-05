@@ -23,7 +23,7 @@ def get_logger(name: str, with_file: bool = False, subpath: str = "."):
         "disable_existing_loggers": False,
         "formatters": {
             "verbose": {
-                "format": "[{asctime}] {levelname:^7} | def {funcName}() | {message}",
+                "format": "[{asctime}] {levelname:^7} | {message}",
                 "style": "{",
             },
         },
