@@ -10,7 +10,6 @@ dependencies = [
     "jinja2>=3.1.3",
     "tortoise-orm[aiosqlite]>=0.20.0",
     "aiohttp>=3.9.3",
-    "granian[reload]>=1.1.1",
     "httpx>=0.26.0",
     "pydantic-settings>=2.2.0",
     "jinja2-fragments>=1.3.0",
