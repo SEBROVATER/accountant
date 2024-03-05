@@ -1,0 +1,24 @@
+services:
+
+  web:
+    build: .
+    ports:
+      - "${EXPENSES_PORT}:8000"
+    volumes:
+      - "./logs:/home/nonroot/app/logs"
+      - "./staticfiles:/home/nonroot/app/app/static"
+      - "./templates:/home/nonroot/app/app/templates"
+      - "./tests:/home/nonroot/app/tests"
+    environment:
+      EXPENSES_USERNAME: "${EXPENSES_USERNAME}"
+      EXPENSES_PASSWORD: "${EXPENSES_PASSWORD}"
+#    healthcheck:
+#      test: "wget --no-verbose --tries=1 --spider http://${DOMAIN}/nsfootball/ping/ || exit 1"
+#      interval: "1m"
+#      timeout: "5s"
+#      retries: 3
+#      start_period: "30s"
+    restart: "always"
+
+networks:
+  expenses-net:
