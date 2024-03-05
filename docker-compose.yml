@@ -2,9 +2,8 @@ services:
 
   web:
     build: .
-    entrypoint: ["granian", "--interface", "asgi", "--port", "${EXPENSES_PORT}", "app.main:app"]
     ports:
-      - "${EXPENSES_PORT}:${EXPENSES_PORT}"
+      - "${EXPENSES_PORT}:8000"
     volumes:
       - "./logs:/home/nonroot/app/logs"
       - "./app/static:/home/nonroot/app/app/static"
