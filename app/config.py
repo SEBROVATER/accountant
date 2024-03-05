@@ -15,10 +15,10 @@ TEMPLATE_DIR: Path = APP_DIR / "templates"
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=ROOT_DIR / ".env")
+
     EXPENSES_USERNAME: str
     EXPENSES_PASSWORD: str
-
-    model_config = SettingsConfigDict(env_file=ROOT_DIR / ".env")
 
     @property
     def fastapi_kwargs(self) -> dict[str, Any]:
