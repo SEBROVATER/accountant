@@ -19,6 +19,8 @@ services:
 #      retries: 3
 #      start_period: "30s"
     restart: "always"
+    networks:
+      expenses-net:
 
 networks:
   expenses-net:
