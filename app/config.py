@@ -8,8 +8,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from general_utils.loggers import GeneralLogging
 from general_utils.utils import get_base_dir
 
-APP_DIR = Path(__file__).resolve().parent
 ROOT_DIR = get_base_dir()
+APP_DIR: Path = ROOT_DIR / "app"
 
 STATIC_DIR: Path = APP_DIR / "static"
 TEMPLATE_DIR: Path = APP_DIR / "templates"
