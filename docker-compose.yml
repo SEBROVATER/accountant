@@ -3,7 +3,7 @@ services:
   web:
     build: .
     ports:
-      - "${EXPENSES_PORT}:8000"
+      - "${EXPENSES_PORT}:${EXPENSES_PORT}"
     volumes:
       - "./logs:/home/nonroot/app/logs"
       - "./static:/home/nonroot/app/app/static"
