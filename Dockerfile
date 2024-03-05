@@ -36,4 +36,5 @@ COPY --from=builder /app/__pypackages__/3.12/bin/* /bin/
 
 COPY . ${APP_HOME}
 
-CMD ["granian", "--interface", "asgi", "app.main:app"]
+#CMD ["granian", "--interface", "asgi", "app.main:app"]
+CMD ["uvicorn", "app.main:app"]
