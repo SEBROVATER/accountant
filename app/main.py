@@ -3,6 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from tortoise.contrib.fastapi import register_tortoise
 
 from app.config import Settings
+from app.dashboards.routes import router as dashboards_router
 from app.db import TORTOISE_ORM
 from app.expenses.routes import router as expenses_router
 from app.routes import router as main_router
@@ -17,6 +18,7 @@ def get_app() -> FastAPI:
     app.mount("/static", StaticFiles(directory=settings.APP_DIR / "static"), name="static")
     app.include_router(main_router)
     app.include_router(expenses_router)
+    app.include_router(dashboards_router)
     return app
 
 
