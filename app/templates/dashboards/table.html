@@ -1,0 +1,21 @@
+<table>
+    <caption>Totals</caption>
+    <thead>
+        <tr>
+            <th>currency</th>
+            <th>month</th>
+            <th>year</th>
+            <th>overall</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for currency in relevant_currencies %}
+            <tr>
+                <td>{{ currency.name }}</td>
+                <td>{{ totals_month[currency]|float }}</td>
+                <td>{{ totals_year[currency]|float }}</td>
+                <td>{{ totals_overall[currency]|float }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
