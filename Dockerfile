@@ -12,7 +12,7 @@ RUN pip install --upgrade pip && pip install -U pip setuptools wheel && pip inst
 #    apt-get install -y --no-install-recommends gcc
 
 COPY pyproject.toml .
-RUN mkdir __pypackages__ && pdm lock --prod && pdm sync --prod --no-editable
+RUN mkdir __pypackages__ && pdm install --prod --no-editable
 
 
 FROM python:3.12-slim
@@ -30,9 +30,9 @@ RUN mkdir -p ${APP_HOME}
 WORKDIR ${APP_HOME}
 
 RUN pip install --upgrade pip
-ENV PYTHONPATH=/__pypackages__
-COPY --from=builder /project/__pypackages__/3.12/lib /__pypackages__
-COPY --from=builder /project/__pypackages__/3.12/bin/* /bin/
+ENV PYTHONPATH=/pkgs
+COPY --from=builder /app/__pypackages__/3.12/lib /pkgs
+COPY --from=builder /app/__pypackages__/3.12/bin/* /bin/
 
 COPY . ${APP_HOME}
 
