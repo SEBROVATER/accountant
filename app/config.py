@@ -15,7 +15,7 @@ TEMPLATE_DIR: Path = APP_DIR / "templates"
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=ROOT_DIR / ".env")
+    model_config = SettingsConfigDict(env_file=ROOT_DIR / ".env", extra="ignore")
 
     EXPENSES_USERNAME: str
     EXPENSES_PASSWORD: str
