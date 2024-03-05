@@ -2,6 +2,7 @@ services:
 
   web:
     build: .
+    entrypoint: ["granian", "--interface", "asgi", "--port", "${EXPENSES_PORT}", "app.main:app"]
     ports:
       - "${EXPENSES_PORT}:${EXPENSES_PORT}"
     volumes:
