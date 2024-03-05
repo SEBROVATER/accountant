@@ -36,5 +36,5 @@ COPY --from=builder /app/__pypackages__/3.12/bin/* /bin/
 
 COPY . ${APP_HOME}
 
-#CMD ["granian", "--interface", "asgi", "app.main:app"]
-ENTRYPOINT ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--forwarded-allow-ips=*"]
+CMD ["granian", "--interface", "asgi", "app.main:app"]
+#ENTRYPOINT ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--forwarded-allow-ips=*"]
