@@ -5,6 +5,7 @@ from fastapi import Depends
 from fastapi.responses import HTMLResponse
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+from general_utils.loggers import GeneralLogging
 from general_utils.utils import get_base_dir
 
 APP_DIR = Path(__file__).resolve().parent
@@ -39,3 +40,4 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+GeneralLogging.info("Settings loaded")

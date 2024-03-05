@@ -63,7 +63,7 @@ def get_logger(name: str, with_file: bool = False, subpath: str = "."):
 
 
 class GeneralLogging(ABC):
-    logger: Logger
+    logger: Logger = get_logger("accounter")
 
     @classmethod
     def debug(cls, *args, **kwargs):

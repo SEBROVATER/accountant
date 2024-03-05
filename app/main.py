@@ -7,6 +7,7 @@ from app.dashboards.routes import router as dashboards_router
 from app.db import TORTOISE_ORM
 from app.expenses.routes import router as expenses_router
 from app.routes import router as main_router
+from general_utils.loggers import GeneralLogging
 
 
 def get_app() -> FastAPI:
@@ -22,3 +23,4 @@ def get_app() -> FastAPI:
 
 app = get_app()
 register_tortoise(app, config=TORTOISE_ORM)
+GeneralLogging.info("Application started...")
