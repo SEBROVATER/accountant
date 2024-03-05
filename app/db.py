@@ -2,6 +2,7 @@ from tortoise import Tortoise, run_async
 
 from app.config import ROOT_DIR
 
+(ROOT_DIR / "db").mkdir(exist_ok=True)
 TORTOISE_ORM = {
     "connections": {"default": f"sqlite://{ROOT_DIR}/db/db.sqlite3"},
     "apps": {
