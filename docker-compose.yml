@@ -10,6 +10,7 @@ services:
       - "./static:/home/nonroot/app/app/static"
       - "./templates:/home/nonroot/app/app/templates"
       - "./tests:/home/nonroot/app/tests"
+      - "./db:/home/nonroot/db"
     environment:
       EXPENSES_USERNAME: "${EXPENSES_USERNAME}"
       EXPENSES_PASSWORD: "${EXPENSES_PASSWORD}"
