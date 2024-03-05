@@ -6,13 +6,13 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir -p /app
 WORKDIR /app
 
-RUN pip install --upgrade pip && pip install -U pip setuptools wheel && pip install pdm
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc && \
+    pip install --upgrade pip
 
-#RUN apt-get update && \
-#    apt-get install -y --no-install-recommends gcc
-
-COPY pyproject.toml .
-RUN mkdir __pypackages__ && pdm install --prod --no-editable
+COPY requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt && \
+    pip cache purge
 
 
 FROM python:3.12-slim
@@ -21,7 +21,6 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 
-# create directory for the nonroot user
 RUN mkdir -p /home/nonroot
 
 ENV HOME=/home/nonroot
@@ -29,12 +28,12 @@ ENV APP_HOME=/home/nonroot/app
 RUN mkdir -p ${APP_HOME}
 WORKDIR ${APP_HOME}
 
-RUN pip install --upgrade pip
-ENV PYTHONPATH=/pkgs
-COPY --from=builder /app/__pypackages__/3.12/lib /pkgs
-COPY --from=builder /app/__pypackages__/3.12/bin/* /bin/
+COPY --from=builder /app/wheels ${HOME}/wheels
+
+RUN pip install --upgrade pip && \
+    pip install --no-cache ${HOME}/wheels/* && \
+    pip cache purge
 
 COPY . ${APP_HOME}
 
-#CMD ["granian", "--interface", "asgi", "app.main:app"]
 ENTRYPOINT ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--forwarded-allow-ips=*"]
