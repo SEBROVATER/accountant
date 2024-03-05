@@ -6,7 +6,7 @@ services:
       - "${EXPENSES_PORT}:8000"
     volumes:
       - "./logs:/home/nonroot/app/logs"
-      - "./staticfiles:/home/nonroot/app/app/static"
+      - "./static:/home/nonroot/app/app/static"
       - "./templates:/home/nonroot/app/app/templates"
       - "./tests:/home/nonroot/app/tests"
     environment:
