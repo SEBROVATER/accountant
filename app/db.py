@@ -3,7 +3,7 @@ from tortoise import Tortoise, run_async
 from app.config import ROOT_DIR
 
 TORTOISE_ORM = {
-    "connections": {"default": f"sqlite://{ROOT_DIR}/db.sqlite3"},
+    "connections": {"default": f"sqlite://{ROOT_DIR}/db/db.sqlite3"},
     "apps": {
         "models": {
             "models": ["app.expenses.models", "aerich.models"],
