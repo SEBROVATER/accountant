@@ -1,4 +1,4 @@
-from datetime import UTC, datetime, timedelta
+from datetime import datetime
 from decimal import Decimal
 from typing import Annotated
 
@@ -12,8 +12,7 @@ router = APIRouter()
 
 @router.get("/expenses/table")
 async def get_expenses_table(request: Request):
-    now = datetime.now(UTC)
-    expenses = await Expense.filter(date__gt=now - timedelta(days=31)).order_by("-date").all()
+    expenses = await Expense.all().order_by("-date").all()
     return templates.TemplateResponse(
         request, "expenses/tbody.html", context={"expenses": expenses}
     )
@@ -21,8 +20,7 @@ async def get_expenses_table(request: Request):
 
 @router.get("/expenses/")
 async def get_expenses(request: Request):
-    now = datetime.now(UTC)
-    expenses = await Expense.filter(date__gt=now - timedelta(days=31)).order_by("-date").all()
+    expenses = await Expense.all().order_by("-date").all()
     return templates.TemplateResponse(
         request,
         "expenses/main.html",
