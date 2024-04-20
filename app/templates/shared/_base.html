@@ -13,8 +13,9 @@
         <script src="{{ url_for('static', path='js/htmx.min.js') }}"></script>
     </head>
     <body>
+        <a href="{{ url_for("get_expenses") }}">Expenses</a>
+        <a href="{{ url_for("get_dashboards") }}">Dashboards</a>
         {% block content %}
-            <h1>Hello, there!</h1>
         {% endblock content %}
         <div id="alert" class="ok">alert</div>
     </body>
