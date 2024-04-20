@@ -12,9 +12,12 @@
         {% for currency in relevant_currencies %}
             <tr>
                 <td>{{ currency.name }}</td>
-                <td>{{ totals_month[currency]|float }}</td>
-                <td>{{ totals_year[currency]|float }}</td>
-                <td>{{ totals_overall[currency]|float }}</td>
+                <td>{{ totals_month[currency]|float or 0.0 }}</td>
+                <td>{{ totals_2months[currency]|float or 0.0 }}</td>
+                <td>{{ totals_3months[currency]|float or 0.0 }}</td>
+                <td>{{ totals_half_year[currency]|float or 0.0 }}</td>
+                <td>{{ totals_year[currency]|float or 0.0 }}</td>
+                <td>{{ totals_overall[currency]|float or 0.0 }}</td>
             </tr>
         {% endfor %}
     </tbody>

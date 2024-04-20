@@ -21,6 +21,33 @@ async def get_dashboards(request: Request):
         .values("currency", "total")
     ):
         totals_month[data["currency"]] = data["total"]
+
+    totals_2months = dict()
+    for data in (
+        await Expense.filter(date__gt=now - timedelta(days=62))
+        .annotate(total=Sum("amount"))
+        .group_by("currency")
+        .values("currency", "total")
+    ):
+        totals_2months[data["currency"]] = data["total"]
+    totals_3months = dict()
+    for data in (
+        await Expense.filter(date__gt=now - timedelta(days=93))
+        .annotate(total=Sum("amount"))
+        .group_by("currency")
+        .values("currency", "total")
+    ):
+        totals_3months[data["currency"]] = data["total"]
+
+    totals_half_year = dict()
+    for data in (
+        await Expense.filter(date__gt=now - timedelta(days=366 // 2))
+        .annotate(total=Sum("amount"))
+        .group_by("currency")
+        .values("currency", "total")
+    ):
+        totals_half_year[data["currency"]] = data["total"]
+
     totals_year = dict()
     for data in (
         await Expense.filter(date__gt=now - timedelta(days=365))
@@ -42,6 +69,9 @@ async def get_dashboards(request: Request):
         context={
             "relevant_currencies": relevant_currencies,
             "totals_month": totals_month,
+            "totals_2months": totals_2months,
+            "totals_3months": totals_3months,
+            "totals_half_year": totals_half_year,
             "totals_year": totals_year,
             "totals_overall": totals_overall,
         },
